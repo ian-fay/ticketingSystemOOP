@@ -44,6 +44,7 @@ namespace ticketingSystemOOP
                     else
                     {
                         Console.WriteLine("File does not exist");
+                        logger.Error("File does not exist.");
                     }
                 }
                 else if (choice == "2")
