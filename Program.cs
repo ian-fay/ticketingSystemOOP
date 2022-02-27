@@ -15,7 +15,6 @@ namespace ticketingSystemOOP
                 Console.WriteLine("1) Read data from file.");
                 Console.WriteLine("2) Add data to file.");
                 Console.WriteLine("Enter any other key to exit.");
-                // input response
                 choice = Console.ReadLine();
 
                 if (choice == "1")
