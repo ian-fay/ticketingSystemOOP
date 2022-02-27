@@ -15,6 +15,8 @@ namespace ticketingSystemOOP
 
             string file = "Tickets.csv";
             string choice;
+
+
             do
             {
                 // ask user a question
@@ -23,9 +25,10 @@ namespace ticketingSystemOOP
                 Console.WriteLine("Enter any other key to exit.");
                 choice = Console.ReadLine();
 
+                
                 if (choice == "1")
                 {
-                                        // read data from file
+                    // read data from file
                     if (File.Exists(file))
                     {
 
@@ -49,8 +52,11 @@ namespace ticketingSystemOOP
                 }
                 else if (choice == "2")
                 {
-                                        // create file from data
+                    // create file from data
                     StreamWriter sw = new StreamWriter(file, true);
+
+                    Ticket ticket = new Ticket();
+
                     for (int i = 0; i < 7; i++)
                     {
                         // ask a question
@@ -59,33 +65,33 @@ namespace ticketingSystemOOP
                         string resp = Console.ReadLine().ToUpper();
                         // if the response is anything other than "Y", stop asking
                         if (resp != "Y") { break; }
-                        // prompt for TicketID
+
                         Console.WriteLine("Enter Ticket ID (numbers)");
-                        // save the TicketID
-                        int TicketID = Convert.ToInt16(Console.ReadLine());
-                        // prompt for summary
+                        ticket.ticketID = Convert.ToInt16(Console.ReadLine());
+
                         Console.WriteLine("Enter Ticket Summary");
-                        // save the summary
-                        string Summary = Console.ReadLine();
-                        //prompt for Priority
+                        ticket.summary = Console.ReadLine();
+                    
                         Console.WriteLine("Enter Ticket Status (Open, Closed)");
-                        // save the summary
-                        string Status = Console.ReadLine();
+                        ticket.status = Console.ReadLine();
 
                         Console.WriteLine("Enter Ticket Priority");
-                        string Priority = Console.ReadLine();
+                        ticket.priority = Console.ReadLine();
 
                         Console.WriteLine("Enter Your Name (Ticket Submitter, First and Last Name)");
-                        string Submitter = Console.ReadLine();
-                        Console.WriteLine("Enter who has been assigned the Ticket (Seperate Multiple Entries with comma, include First and Last name)");
-                        string Assigned = Console.ReadLine();
-                        Console.WriteLine("Enter who is watching the ticket (Seperate Multiple Entries with |, include First and Last name) ");
-                        string Watching = Console.ReadLine();
+                        ticket.submitter = Console.ReadLine();
 
-                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", TicketID, Summary, Status, Priority, Submitter, Assigned, Watching);
+                        Console.WriteLine("Enter who has been assigned the Ticket (Seperate Multiple Entries with comma, include First and Last name)");
+                        ticket.assigned = Console.ReadLine();
+
+                        Console.WriteLine("Enter who is watching the ticket (Seperate Multiple Entries with |, include First and Last name) ");
+                        ticket.watching = Console.ReadLine();
+
+                        sw.WriteLine($"{ticket.ticketID},{ticket.summary},{ticket.status},{ticket.priority},{ticket.submitter},{ticket.assigned},{ticket.watching}");
                     }
                     sw.Close();
                 }
+                logger.Info("User choice: {Choice}", choice);
             } while (choice == "1" || choice == "2");
 
             logger.Info("Program Ended.");

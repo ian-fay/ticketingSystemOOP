@@ -2,9 +2,9 @@ using System;
 
 namespace ticketingSystemOOP
 {
-    public class Movie
+    public class Ticket
     {
-        public UInt64 ticketID { get; set; }
+        public int ticketID { get; set; }
         public string summary { get; set; }
 
         public string status {get; set;}
