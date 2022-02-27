@@ -31,15 +31,10 @@ namespace ticketingSystemOOP
                     // read data from file
                     if (File.Exists(file))
                     {
-
-                        // read data from file
                         StreamReader sr = new StreamReader(file);
                         while (!sr.EndOfStream)
                         {
                             string line = sr.ReadLine();
-                            // convert string to array
-                            //string[] arr = line.Split('|');
-                            // display array data
                             Console.WriteLine(line);
                         }
                         sr.Close();
