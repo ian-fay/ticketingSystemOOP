@@ -1,12 +1,18 @@
 ﻿using System;
 using System.IO;
+using NLog.Web;
 
 namespace ticketingSystemOOP
 {
     class Program
-    {
+    {   
+
+        private static NLog.Logger logger = NLogBuilder.ConfigureNLog(Directory.GetCurrentDirectory() + "\\nlog.config").GetCurrentClassLogger();
         static void Main(string[] args)
         {
+
+            logger.Info("Program Started.");
+
             string file = "Tickets.csv";
             string choice;
             do
@@ -43,7 +49,7 @@ namespace ticketingSystemOOP
                 else if (choice == "2")
                 {
                                         // create file from data
-                    StreamWriter sw = new StreamWriter(file);
+                    StreamWriter sw = new StreamWriter(file, true);
                     for (int i = 0; i < 7; i++)
                     {
                         // ask a question
@@ -80,6 +86,8 @@ namespace ticketingSystemOOP
                     sw.Close();
                 }
             } while (choice == "1" || choice == "2");
+
+            logger.Info("Program Ended.");
         }
     }
 }
